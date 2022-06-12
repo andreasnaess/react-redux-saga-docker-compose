@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  frontend:
+    container_name: frontend
+    build: ./react-redux-saga
+    ports:
+      - "3000:3000"
+  backend:
+    container_name: backend
+    build: ./react-redux-saga-backend
+    ports:
+      - "8080:8080"
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
